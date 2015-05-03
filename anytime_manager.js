@@ -53,8 +53,8 @@ var AnyTimeManager = Class.extend({
     }
   },
   load: function(){
-    var any_time_manager = this;
-    $.each(any_time_manager.loader_array,function(){
+    var atm = this;
+    $.each(atm.loader_array,function(){
       var data_attribute = this['data_attribute'];
       var base_class = this['base_class'];
       if(!base_class){
@@ -67,9 +67,9 @@ var AnyTimeManager = Class.extend({
           var declared_class = $(this).data('sub-type');
           var this_class = getSubClass(declared_class,base_class);
           this_class = namespace + this_class;
-          any_time_manager.instantiate($(this),this_class);
+          atm.instantiate($(this),this_class);
         }else{
-          any_time_manager.run($(this),base_class,this_method);
+          atm.run($(this),base_class,this_method);
         }
 
       });
