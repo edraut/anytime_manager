@@ -76,16 +76,16 @@ var AnyTimeManager = Class.extend({
     });
   }
 });
-any_time_manager = new AnyTimeManager();
+window.any_time_manager = new AnyTimeManager();
 $(document).ajaxComplete(function(){
   console.log('ajaxComplete')
-  console.log(any_time_manager.loader_array)
-  any_time_manager.load();
+  console.log(window.any_time_manager.loader_array)
+  window.any_time_manager.load();
 });
 $(document).ready(function(){
   console.log('document ready')
-  console.log(any_time_manager.loader_array)
-  any_time_manager.load();
+  console.log(window.any_time_manager.loader_array)
+  window.any_time_manager.load();
 });
 
 // End AnyTime library
