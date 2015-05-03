@@ -16,6 +16,9 @@ String.prototype.toCapCamel = function(){
 var AnyTimeManager = Class.extend({
   init: function(){
     this.loader_array = []
+    $.each(window.any_time_load_functions, function(i,func){
+      func();
+    }
   },
   register: function(data_attribute,load_method,base_class,namespace){
     if(!namespace){namespace = ''}else{namespace= namespace + '.'}
