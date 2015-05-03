@@ -1,4 +1,13 @@
 //Anytime loader, simulates load events for ajax requests
+function getSubClass(sub_class_name,parent_class){
+  if((typeof(sub_class_name) == 'string') && (sub_class_name != '') && (sub_class_name != 'true')){
+    var this_class = sub_class_name;
+  } else {
+    var this_class = parent_class;
+  }
+  return this_class;
+};
+
 String.prototype.toCapCamel = function(){
   camel = this.replace(/[-_]([a-z])/g, function (g) { return g.replace(/[-_]/,'').charAt(0).toUpperCase(); });
   return camel.charAt(0).toUpperCase() + camel.slice(1);
