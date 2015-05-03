@@ -17,19 +17,20 @@ var AnyTimeManager = Class.extend({
   init: function(){
     this.loader_array = []
   },
-  register: function(data_attribute,load_method,base_class){
-    this.loader_array.push({data_attribute: data_attribute, base_class: base_class, load_method: load_method});
+  register: function(data_attribute,load_method,base_class,namespace){
+    if(!namespace){namespace = ''}else{namespace= namespace + '.'}
+    this.loader_array.push({data_attribute: data_attribute, base_class: base_class, load_method: load_method, namespace: namespace});
   },
-  registerList: function(list){
+  registerList: function(list,namespace){
     var anytime_manager = this;
     $.each(list,function(){
-      anytime_manager.register(this + '','instantiate',null)
+      anytime_manager.register(this + '','instantiate',null,namespace)
     })
   },
-  registerListWithClasses: function(list){
+  registerListWithClasses: function(list,namespace){
     var anytime_manager = this;
     $.each(list,function(attr,klass){
-      anytime_manager.register(attr,'instantiate',klass)
+      anytime_manager.register(attr,'instantiate',klass,namespace)
     })
   },
   registerRunList: function(list){
@@ -60,10 +61,12 @@ var AnyTimeManager = Class.extend({
         base_class = data_attribute.toCapCamel();
       }
       var this_method = this['load_method'];
+      var namespace = this['namespace'];
       $('[data-' + data_attribute + ']').each(function(){
         if('instantiate' == this_method){
           var declared_class = $(this).data('sub-type');
           var this_class = getSubClass(declared_class,base_class);
+          this_class = namespace + this_class;
           any_time_manager.instantiate($(this),this_class);
         }else{
           any_time_manager.run($(this),base_class,this_method);
