@@ -40,6 +40,9 @@ var AnyTimeManager = Class.extend({
     })
   },
   instantiate: function(jq_obj, class_name){
+    console.log('instantiate')
+    console.log(jq_obj)
+    console.log(class_name)
     if(!jq_obj.data('anytime_loaded')){
       jq_obj.data('anytime_loaded',true);
       var this_class = eval(class_name);
