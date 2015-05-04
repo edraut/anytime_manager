@@ -78,13 +78,9 @@ var AnyTimeManager = Class.extend({
 });
 window.any_time_manager = new AnyTimeManager();
 $(document).ajaxComplete(function(){
-  console.log('ajaxComplete')
-  console.log(window.any_time_manager.loader_array)
   window.any_time_manager.load();
 });
 $(document).ready(function(){
-  console.log('document ready')
-  console.log(window.any_time_manager.loader_array)
   if(typeof window.any_time_load_functions != 'undefined'){
     $.each(window.any_time_load_functions, function(i,func){
       func();
