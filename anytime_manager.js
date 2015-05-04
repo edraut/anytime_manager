@@ -16,9 +16,6 @@ String.prototype.toCapCamel = function(){
 var AnyTimeManager = Class.extend({
   init: function(){
     this.loader_array = []
-    $.each(window.any_time_load_functions, function(i,func){
-      func();
-    });
   },
   register: function(data_attribute,load_method,base_class,namespace){
     if(!namespace){namespace = ''}else{namespace= namespace + '.'}
@@ -88,6 +85,11 @@ $(document).ajaxComplete(function(){
 $(document).ready(function(){
   console.log('document ready')
   console.log(window.any_time_manager.loader_array)
+  if(typeof window.any_time_load_functions != 'undefined'){
+    $.each(window.any_time_load_functions, function(i,func){
+      func();
+    });
+  }
   window.any_time_manager.load();
 });
 
